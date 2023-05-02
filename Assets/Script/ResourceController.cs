@@ -23,7 +23,7 @@ public class ResourceController : MonoBehaviour
             if(isUnlocked){
                 UpgradeLevel();
             }else{
-                unlockResource();
+                UnlockResource();
             }
         });
     }
@@ -64,7 +64,7 @@ public class ResourceController : MonoBehaviour
     }
 
     public void UnlockResource(){
-        double unloadCost = GetUnloadCost();
+        double unloadCost = GetUnlockCost();
         if(GameManager.Instance.TotalGold < unloadCost){
             return;
         }
@@ -75,7 +75,7 @@ public class ResourceController : MonoBehaviour
 
     public void SetUnlocked(bool unlocked){
         isUnlocked = unlocked;
-        resourceImage.color = IsUnlocked ? Color.White : Color.Gray;
+        resourceImage.color = isUnlocked ? Color.white : Color.gray;
         resourceUnlockCost.gameObject.SetActive(!unlocked);
         resourceUpgradeCost.gameObject.SetActive(unlocked);
     }

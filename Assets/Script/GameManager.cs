@@ -72,19 +72,19 @@ public class GameManager : MonoBehaviour
     private void CheckResourceCost(){
         foreach(ResourceController resource in _activeResources){
             bool isBuyable = false;
-            if(resource.IsUnlocked){
-                isBuyable = TotalGold => resource.GetUpgradeCost();
+            if(resource.isUnlocked){
+                isBuyable = TotalGold >= resource.GetUpgradeCost();
             } else {
-                isBuyable = TotalGold => resource.GetUnlockCost();                
+                isBuyable = TotalGold >= resource.GetUnlockCost();                
             }
-            resource.resourceImage.sprite = ResourcesSprites[isBuysable ? 1 : 0];
+            resource.resourceImage.sprite = ResourcesSprites[isBuyable ? 1 : 0];
         }
     }
 
     private void CollectPerSecond(){
         double output = 0;
         foreach(ResourceController resource in _activeResources){
-            if(resource.IsUnlocked){
+            if(resource.isUnlocked){
                 output += resource.GetOutput();
             }
         }
@@ -104,7 +104,7 @@ public class GameManager : MonoBehaviour
     public void CollectByTap(Vector3 tapPosition, Transform parent){
         double output = 0;
         foreach(ResourceController resource in _activeResources){
-            if(resource.IsUnlocked){
+            if(resource.isUnlocked){
                 output += resource.GetOutput();
             }
         }
