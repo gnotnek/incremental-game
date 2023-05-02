@@ -370,6 +370,21 @@ MonoBehaviour:
     unlockCost: 0
     upgradeCost: 1
     output: 2
+  - name: Honorer
+    unlockCost: 100
+    upgradeCost: 100
+    output: 200
+  - name: PNS
+    unlockCost: 1000
+    upgradeCost: 1000
+    output: 2000
+  - name: manager
+    unlockCost: 100000
+    upgradeCost: 100000
+    output: 200000
+  ResourcesSprites:
+  - {fileID: 21300000, guid: 6a3cedeeae5204648866c1617111f78b, type: 3}
+  - {fileID: 21300000, guid: d908736d48f5d5d448cca9dd8703874d, type: 3}
   ResourcesParent: {fileID: 89388427}
   ResourcesPrefab: {fileID: 1278528072}
   TapTextPrefab: {fileID: 6165831248304636933, guid: 5b1ec1e92941dc244b2c4c1ee34b1a75, type: 3}
@@ -1244,6 +1259,7 @@ GameObject:
   - component: {fileID: 1656264827}
   - component: {fileID: 1656264829}
   - component: {fileID: 1656264828}
+  - component: {fileID: 1656264830}
   m_Layer: 5
   m_Name: tap-area
   m_TagString: Untagged
@@ -1308,6 +1324,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1656264826}
   m_CullTransparentMesh: 1
+--- !u!114 &1656264830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1656264826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b53724af8303abd4aa3cc700589d60b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1772079894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,6 +1625,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2016436538}
   m_CullTransparentMesh: 1
+--- !u!114 &2037914840 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6673359952614636199, guid: 909bbcf33e8c61f48933b39806b07440, type: 3}
+  m_PrefabInstance: {fileID: 6673359953620463841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2037914842 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5590107608763902291, guid: 909bbcf33e8c61f48933b39806b07440, type: 3}
+  m_PrefabInstance: {fileID: 6673359953620463841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &790494616900688539
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1670,11 +1720,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 790494617023272723, guid: f1777debf1da6404da912c73905c143c, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 95
+      value: 89.999
       objectReference: {fileID: 0}
     - target: {fileID: 790494617023272723, guid: f1777debf1da6404da912c73905c143c, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -70
+      value: -79
       objectReference: {fileID: 0}
     - target: {fileID: 790494617023272723, guid: f1777debf1da6404da912c73905c143c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1687,6 +1737,10 @@ PrefabInstance:
     - target: {fileID: 790494617023272723, guid: f1777debf1da6404da912c73905c143c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 790494617023272733, guid: f1777debf1da6404da912c73905c143c, type: 3}
+      propertyPath: m_text
+      value: 'Auto Collect: 0 / s'
       objectReference: {fileID: 0}
     - target: {fileID: 790494617023272733, guid: f1777debf1da6404da912c73905c143c, type: 3}
       propertyPath: m_fontColor.b
@@ -1767,11 +1821,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2710741055773960225, guid: ecf8d97ae953eee4f89e499014373899, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 376.41
       objectReference: {fileID: 0}
     - target: {fileID: 2710741055773960225, guid: ecf8d97ae953eee4f89e499014373899, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 30
+      value: 44.439
       objectReference: {fileID: 0}
     - target: {fileID: 2710741055773960225, guid: ecf8d97ae953eee4f89e499014373899, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1803,11 +1857,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2710741055773960225, guid: ecf8d97ae953eee4f89e499014373899, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 90
+      value: 198.204
       objectReference: {fileID: 0}
     - target: {fileID: 2710741055773960225, guid: ecf8d97ae953eee4f89e499014373899, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -25
+      value: -32.219
       objectReference: {fileID: 0}
     - target: {fileID: 2710741055773960225, guid: ecf8d97ae953eee4f89e499014373899, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1922,5 +1976,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: resource-ui
       objectReference: {fileID: 0}
+    - target: {fileID: 6673359952614636201, guid: 909bbcf33e8c61f48933b39806b07440, type: 3}
+      propertyPath: resourceImage
+      value: 
+      objectReference: {fileID: 2037914840}
+    - target: {fileID: 6673359952614636201, guid: 909bbcf33e8c61f48933b39806b07440, type: 3}
+      propertyPath: resourceButton
+      value: 
+      objectReference: {fileID: 2037914842}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 909bbcf33e8c61f48933b39806b07440, type: 3}

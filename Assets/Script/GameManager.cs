@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [Range(0f, 1f)]
     public float AutoCollectPercentage = 0.1f;
     public ResourceConfig[] ResourcesConfigs;
+    public Sprite[] ResourcesSprites;
 
     public Transform ResourcesParent;
     public ResourceController ResourcesPrefab;
@@ -31,7 +32,7 @@ public class GameManager : MonoBehaviour
     private List<TapText> _tapTextPool = new List<TapText>();
     private float _collectSound;
 
-    private double _totalGold;
+    public double TotalGold { get; private set; }
     // Start is called before the first frame update
     void Start() {
         AddAllResources();
@@ -46,24 +47,46 @@ public class GameManager : MonoBehaviour
             _collectSound = 0f;
         }
 
+        CheckResourceCost();
+
         CoinIcon.transform.localScale = Vector3.LerpUnclamped(CoinIcon.transform.localScale, Vector3.one * 2f,0.15f);
         CoinIcon.transform.Rotate(0f, 0f, Time.deltaTime * -100f);
     }
 
     private void AddAllResources() {
+        bool showResources = true;
         foreach (ResourceConfig config in ResourcesConfigs)
         {
             GameObject obj = Instantiate(ResourcesPrefab.gameObject, ResourcesParent, false);
             ResourceController resource = obj.GetComponent<ResourceController>();
             resource.SetConfig(config);
+
+            obj.gameObject.SetActive(showResources);
+            if(showResources && !resource.isUnlocked){
+                showResources = false;
+            }
             _activeResources.Add(resource);
+        }
+    }
+
+    private void CheckResourceCost(){
+        foreach(ResourceController resource in _activeResources){
+            bool isBuyable = false;
+            if(resource.IsUnlocked){
+                isBuyable = TotalGold => resource.GetUpgradeCost();
+            } else {
+                isBuyable = TotalGold => resource.GetUnlockCost();                
+            }
+            resource.resourceImage.sprite = ResourcesSprites[isBuysable ? 1 : 0];
         }
     }
 
     private void CollectPerSecond(){
         double output = 0;
         foreach(ResourceController resource in _activeResources){
-            output += resource.GetOutput();
+            if(resource.IsUnlocked){
+                output += resource.GetOutput();
+            }
         }
 
         output *= AutoCollectPercentage;
@@ -73,15 +96,17 @@ public class GameManager : MonoBehaviour
         AddGold(output);
     }
 
-    private void AddGold(double value){
-        _totalGold += value;
-        GoldInfo.text = $"Gold: { _totalGold.ToString("0")}";
+    public void AddGold(double value){
+        TotalGold += value;
+        GoldInfo.text = $"Gold: { TotalGold.ToString("0")}";
     }
 
     public void CollectByTap(Vector3 tapPosition, Transform parent){
         double output = 0;
         foreach(ResourceController resource in _activeResources){
-            output += resource.GetOutput();
+            if(resource.IsUnlocked){
+                output += resource.GetOutput();
+            }
         }
         TapText tapText = GetOrCreateTapText();
         tapText.transform.SetParent(parent, false);
@@ -102,6 +127,15 @@ public class GameManager : MonoBehaviour
         }
 
         return tapText;
+    }
+
+    public void ShowNextResource(){
+        foreach(ResourceController resource in _activeResources){
+            if(!resource.gameObject.activeSelf){
+                resource.gameObject.SetActive(true);
+                break;
+            }
+        }
     }
 }
 
